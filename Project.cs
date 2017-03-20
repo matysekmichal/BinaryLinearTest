@@ -20,21 +20,21 @@ namespace Project
 
             for(int i = 10; i <= 28; i++)
             {
-                int number = (1 << i) - 1;
+                int arrayLengthToMeassure = (1 << i) - 1;
 
-                double durationTime = Test(arrayOfNumbers, number);
-                Console.WriteLine($"attempt = {i}, number = {number}, duration = {durationTime}");
+                double durationTime = Test(arrayOfNumbers, arrayLengthToMeassure);
+                Console.WriteLine($"attempt = {i}, arrayLengthToMeassure = {arrayLengthToMeassure}, duration = {durationTime}");
 
-                file.WriteLine(string.Format($"{i}; {number}; {durationTime}"));
+                file.WriteLine(string.Format($"{i}; {arrayLengthToMeassure}; {durationTime}"));
             }
 
             file.Dispose();
         }
 
-        private static int BinarySearch(int[] vector, int number, int numberToFind)
+        private static int BinarySearch(int[] vector, int arrayLengthToMeassure, int numberToFind)
         {
             int left = 0;
-            int right = number - 1;
+            int right = arrayLengthToMeassure - 1;
 
             while(left <= right)
             {
@@ -51,14 +51,14 @@ namespace Project
             return -1;
         }
 
-        private static double Test(int[] vector, int number)
+        private static double Test(int[] vector, int arrayLengthToMeassure)
         {
             const int attempts = 100000000;
 
             long startTime = Stopwatch.GetTimestamp();
 
             for(var i = 0; i < attempts; i++)
-                BinarySearch(vector, number, 0);
+                BinarySearch(vector, arrayLengthToMeassure, 0);
 
             long stopTime = Stopwatch.GetTimestamp();
 
