@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Diagnostics;
+using System.Numerics;
 
 namespace Project
 {
@@ -20,6 +21,7 @@ namespace Project
 
             for(int i = 10; i <= 28; i++)
             {
+                // int arrayLengthToMeassure = arrayOfNumbers.Length;
                 int arrayLengthToMeassure = (1 << i) - 1;
 
                 double durationTime = Test(arrayOfNumbers, arrayLengthToMeassure);
@@ -63,6 +65,26 @@ namespace Project
             long stopTime = Stopwatch.GetTimestamp();
 
             return (stopTime - startTime) / (double)Stopwatch.Frequency;
+        }
+
+        private static int BinarySearchSimple(int[] vector, int numberToFind)
+        {
+            int left = 0;
+            int right = vector.Length - 1;
+
+            while(left <= right)
+            {
+                int middle = (left + right) >> 1;
+
+                if (vector[middle] == numberToFind)
+                    return middle;
+                if (vector[middle] > numberToFind)
+                    right = middle - 1;
+                else
+                    left = middle + 1;
+            }
+
+            return -1;
         }
     }
 }
