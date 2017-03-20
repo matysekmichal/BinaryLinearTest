@@ -12,18 +12,26 @@ namespace Project
 
         public static void Main(string[] args)
         {
-            int[] arrayOfNumbers = new int[ArrayLength];
-
-            for(int i = 0; i < arrayOfNumbers.Length; i++)
-                arrayOfNumbers[i] = i + 1;
+            int[] arrayOfNumbers = generateNextNumbers(ArrayLength);
 
             for(int i = 10; i <= 28; i++)
             {
                 int arrayLengthToMeassure = (1 << i) - 1;
-                BinarySearch.BinarySearch binarySearch = new BinarySearch.BinarySearch(arrayOfNumbers, 0, arrayLengthToMeassure);
 
-                Console.WriteLine(binarySearch.BinarySearchSpeedTest());
+                double binarySearchSpeedTest = new BinarySearch.BinarySearch(arrayOfNumbers, 0, arrayLengthToMeassure).BinarySearchSpeedTest();
+
+                Console.WriteLine(binarySearchSpeedTest);
             }
+        }
+
+        private static int[] generateNextNumbers(int arrayLength)
+        {
+            int[] arrayOfNumbers = new int[arrayLength];
+
+            for(int i = 0; i < arrayOfNumbers.Length; i++)
+                arrayOfNumbers[i] = i + 1;
+
+            return arrayOfNumbers;
         }
     }
 }
