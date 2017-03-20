@@ -2,9 +2,9 @@
 using System.IO;
 using System.Diagnostics;
 
-namespace Projekt1
+namespace Project
 {
-    internal class Program
+    internal class App
     {
         private const int ArrayLength = 256 * 1024 * 1024 - 1;
 
@@ -53,11 +53,13 @@ namespace Projekt1
 
         private static double Test(int[] vector, int number)
         {
-            const int nt = 100000000;
+            const int attempts = 100000000;
 
             long startTime = Stopwatch.GetTimestamp();
-            for(var i=0; i<nt; i++)
+
+            for(var i = 0; i < attempts; i++)
                 BinarySearch(vector, number, 0);
+
             long stopTime = Stopwatch.GetTimestamp();
 
             return (stopTime - startTime) / (double)Stopwatch.Frequency;
