@@ -7,7 +7,7 @@ namespace Project.BinarySearch
         private int[] vector;
         private int numberToFind;
         private int arrayLengthToMeassure;
-        private int attempts = 100000000;
+        private int attempts;
 
         public BinarySearch(int[] vector, int numberToFind)
         {
