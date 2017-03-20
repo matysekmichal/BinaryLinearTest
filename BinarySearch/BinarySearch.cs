@@ -7,27 +7,36 @@ namespace Project.BinarySearch
         private int[] vector;
         private int numberToFind;
         private int arrayLengthToMeassure;
+        private int attempts = 100000000;
 
-        BinarySearch()
+        public BinarySearch(int[] vector, int numberToFind)
         {
-            return BinarySearchSpeedTest();
+            this.vector = vector;
+            this.numberToFind = numberToFind;
+            arrayLengthToMeassure = vector.Length;
         }
 
-        private double BinarySearchSpeedTest()
+        public BinarySearch(int[] vector, int numberToFind, int arrayLengthToMeassure, int attempts = 100000000)
         {
-            const int attempts = 100000000;
+            this.vector = vector;
+            this.numberToFind = numberToFind;
+            this.arrayLengthToMeassure = arrayLengthToMeassure;
+            this.attempts = attempts;
+        }
 
+        public double BinarySearchSpeedTest()
+        {
             long startTime = Stopwatch.GetTimestamp();
 
             for(var i = 0; i < attempts; i++)
-                BinarySearch(vector, arrayLengthToMeassure, 0);
+                BinarySearchAlgorithm();
 
             long stopTime = Stopwatch.GetTimestamp();
 
             return (stopTime - startTime) / (double)Stopwatch.Frequency;
         }
 
-        private int BinarySearch()
+        public int BinarySearchAlgorithm()
         {
             int left = 0;
             int right = arrayLengthToMeassure - 1;

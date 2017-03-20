@@ -2,7 +2,7 @@
 {
     public interface BinarySearchInterface
     {
-        int BinarySearch();
+        int BinarySearchAlgorithm();
         double BinarySearchSpeedTest();
     }
 }
