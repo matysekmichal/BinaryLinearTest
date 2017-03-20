@@ -1,0 +1,7 @@
+# Created by .ignore support plugin (hsz.mobi)
+Projekt1/.gitignore
+.idea/
+Projekt1.sln
+Projekt1/bin/
+Projekt1/obj/
+Projekt1/scores.csv
