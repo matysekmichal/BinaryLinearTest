@@ -10,21 +10,24 @@ namespace Project
         {
             int[] arrayOfNumbers = generateNextNumbers(ArrayLength);
 
-            int numtofind = 0;
-            double binarySearchAlgorithm = new BinarySearch.BinarySearch(arrayOfNumbers, numtofind).BinarySearchAlgorithm();
+            int numberToFind = 123663;
+            double binarySearchAlgorithm = new BinarySearch.BinarySearch(arrayOfNumbers, numberToFind).BinarySearchAlgorithm();
 
             if (binarySearchAlgorithm > 0)
-                Console.WriteLine("Liczba {0} znajduje się na pozycji {1}.", numtofind, binarySearchAlgorithm);
+                Console.WriteLine("Liczba {0} znajduje się na pozycji {1}.", numberToFind, binarySearchAlgorithm);
             else
-                Console.WriteLine("Nie znaleziono liczby {0}.", numtofind);
+                Console.WriteLine("Nie znaleziono liczby {0}.", numberToFind);
 
             for(int i = 10; i <= 28; i++)
             {
                 int arrayLengthToMeassure = (1 << i) - 1;
 
-                double binarySearchSpeedTest = new BinarySearch.BinarySearch(arrayOfNumbers, 0, arrayLengthToMeassure).BinarySearchSpeedTest();
+                BinarySearch.BinarySearch binarySearchSpeedTest = new BinarySearch.BinarySearch(arrayOfNumbers, 0);
+                binarySearchSpeedTest.SetLimitArrayToCheck(arrayLengthToMeassure);
 
-                Console.WriteLine("{0}; {1}; {2}", i, arrayLengthToMeassure, binarySearchSpeedTest);
+                double time = binarySearchSpeedTest.BinarySearchSpeedTest();
+
+                Console.WriteLine("{0}; {1}; {2}", i, arrayLengthToMeassure, time);
             }
         }
 

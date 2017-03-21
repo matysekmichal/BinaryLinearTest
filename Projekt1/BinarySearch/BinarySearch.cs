@@ -6,29 +6,31 @@ namespace Project.BinarySearch
     {
         private int[] vector;
         private int numberToFind;
-        private int arrayLengthToMeassure;
-        private int attempts;
+        private int _arrayLengthToMeassure;
+        private int _attempts = 100000000;
 
         public BinarySearch(int[] vector, int numberToFind)
         {
             this.vector = vector;
             this.numberToFind = numberToFind;
-            arrayLengthToMeassure = vector.Length;
+            _arrayLengthToMeassure = vector.Length;
         }
 
-        public BinarySearch(int[] vector, int numberToFind, int arrayLengthToMeassure, int attempts = 100000000)
+        public void SetLimitArrayToCheck(int limit)
         {
-            this.vector = vector;
-            this.numberToFind = numberToFind;
-            this.arrayLengthToMeassure = arrayLengthToMeassure;
-            this.attempts = attempts;
+            _arrayLengthToMeassure = limit < vector.Length ? limit : vector.Length;
+        }
+
+        public void SetAttempts(int limit)
+        {
+            _attempts = limit;
         }
 
         public double BinarySearchSpeedTest()
         {
             long startTime = Stopwatch.GetTimestamp();
 
-            for(var i = 0; i < attempts; i++)
+            for(var i = 0; i < _attempts; i++)
                 BinarySearchAlgorithm();
 
             long stopTime = Stopwatch.GetTimestamp();
@@ -39,7 +41,7 @@ namespace Project.BinarySearch
         public int BinarySearchAlgorithm()
         {
             int left = 0;
-            int right = arrayLengthToMeassure - 1;
+            int right = _arrayLengthToMeassure - 1;
 
             while(left <= right)
             {
