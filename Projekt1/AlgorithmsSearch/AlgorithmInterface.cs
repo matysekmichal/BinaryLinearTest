@@ -2,7 +2,7 @@
 {
     public interface IAlgorithm
     {
-        int BinarySearchAlgorithm();
-        double BinarySearchSpeedTest();
+        int AlgorithmInstrumentation();
+        double AlgorithmSpeedTest();
     }
 }

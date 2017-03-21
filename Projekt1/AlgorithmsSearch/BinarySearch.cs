@@ -26,7 +26,7 @@ namespace Projekt1.AlgorithmsSearch
             _attempts = limit;
         }
 
-        public double BinarySearchSpeedTest()
+        public double AlgorithmSpeedTest()
         {
             long startTime = Stopwatch.GetTimestamp();
 
@@ -36,6 +36,26 @@ namespace Projekt1.AlgorithmsSearch
             long stopTime = Stopwatch.GetTimestamp();
 
             return (stopTime - startTime) / (double)Stopwatch.Frequency;
+        }
+
+        public int AlgorithmInstrumentation()
+        {
+            int left = 0;
+            int right = _arrayLengthToMeassure - 1;
+
+            while(left <= right)
+            {
+                int middle = (left + right) >> 1;
+
+                if (vector[middle] == numberToFind)
+                    return middle;
+                if (vector[middle] > numberToFind)
+                    right = middle - 1;
+                else
+                    left = middle + 1;
+            }
+
+            return -1;
         }
 
         public int BinarySearchAlgorithm()

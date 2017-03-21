@@ -1,4 +1,5 @@
 ﻿using System;
+using Projekt1.AlgorithmsSearch;
 
 namespace Projekt1
 {
@@ -8,10 +9,10 @@ namespace Projekt1
 
         public static void Main(string[] args)
         {
-            int[] arrayOfNumbers = generateNextNumbers(ArrayLength);
-
+            int[] arrayOfNumbers = GenerateNextNumbers(ArrayLength);
             int numberToFind = 123663;
-            double binarySearchAlgorithm = new BinarySearch.BinarySearch(arrayOfNumbers, numberToFind).BinarySearchAlgorithm();
+
+            int binarySearchAlgorithm = new BinarySearch(arrayOfNumbers, numberToFind).BinarySearchAlgorithm();
 
             if (binarySearchAlgorithm > 0)
                 Console.WriteLine("Liczba {0} znajduje się na pozycji {1}.", numberToFind, binarySearchAlgorithm);
@@ -22,16 +23,16 @@ namespace Projekt1
             {
                 int arrayLengthToMeassure = (1 << i) - 1;
 
-                BinarySearch.BinarySearch binarySearchSpeedTest = new BinarySearch.BinarySearch(arrayOfNumbers, 0);
+                BinarySearch binarySearchSpeedTest = new BinarySearch(arrayOfNumbers, 0);
                 binarySearchSpeedTest.SetLimitArrayToCheck(arrayLengthToMeassure);
 
-                double time = binarySearchSpeedTest.BinarySearchSpeedTest();
+                double time = binarySearchSpeedTest.AlgorithmSpeedTest();
 
                 Console.WriteLine("{0}; {1}; {2}", i, arrayLengthToMeassure, time);
             }
         }
 
-        private static int[] generateNextNumbers(int arrayLength)
+        private static int[] GenerateNextNumbers(int arrayLength)
         {
             int[] arrayOfNumbers = new int[arrayLength];
 
