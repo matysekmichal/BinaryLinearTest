@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Project
+namespace Projekt1
 {
     internal class App
     {

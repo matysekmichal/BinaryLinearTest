@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics;
 
-namespace Project.BinarySearch
+namespace Projekt1.AlgorithmsSearch
 {
-    public class BinarySearch : BinarySearchInterface
+    public class BinarySearch : IAlgorithm
     {
         private int[] vector;
         private int numberToFind;
@@ -57,6 +57,5 @@ namespace Project.BinarySearch
 
             return -1;
         }
-
     }
 }

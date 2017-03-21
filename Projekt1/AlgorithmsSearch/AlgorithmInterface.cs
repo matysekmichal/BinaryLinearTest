@@ -1,6 +1,6 @@
-﻿namespace Project.BinarySearch
+﻿namespace Projekt1.AlgorithmsSearch
 {
-    public interface BinarySearchInterface
+    public interface IAlgorithm
     {
         int BinarySearchAlgorithm();
         double BinarySearchSpeedTest();
