@@ -7,6 +7,10 @@ namespace Projekt1.AlgorithmsSearch
         private int[] vector;
         private int numberToFind;
         private int _attempts = 100000000;
+        public int OpAssignment;
+        public int OpComparisonLt;
+        public int OpComparisonEq;
+        public int OpIncrement;
 
         public LinearSearch(int[] vector, int numberToFind)
         {
@@ -21,7 +25,19 @@ namespace Projekt1.AlgorithmsSearch
 
         public int AlgorithmInstrumentation()
         {
-            throw new System.NotImplementedException();
+            OpAssignment = OpComparisonLt = 1;
+            for (int i = 0; i < vector.Length; i++, OpIncrement++)
+            {
+                OpComparisonEq++;
+                if (vector[i] == numberToFind) return i;
+                OpComparisonLt++;
+            }
+            return -1;
+        }
+
+        public string GetInstrumentation()
+        {
+            return $"{OpAssignment}; {OpComparisonEq}; {OpComparisonLt}; {OpIncrement}";
         }
 
         public double AlgorithmSpeedTest()
@@ -36,13 +52,13 @@ namespace Projekt1.AlgorithmsSearch
             return (stopTime - startTime) / (double)Stopwatch.Frequency;
         }
 
-        public bool LinearSearchAlgorithm()
+        public int LinearSearchAlgorithm()
         {
-            foreach (int t in vector)
-                if (t == numberToFind)
-                    return true;
+            foreach (int i in vector)
+                if (i == numberToFind)
+                    return i;
 
-            return false;
+            return -1;
         }
     }
 }

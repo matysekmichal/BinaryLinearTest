@@ -10,15 +10,43 @@ namespace Projekt1
         public static void Main(string[] args)
         {
             int[] arrayOfNumbers = GenerateNextNumbers(ArrayLength);
-            int numberToFind = 123663;
+            int numberToFind = 2;
 
-            int binarySearchAlgorithm = new BinarySearch(arrayOfNumbers, numberToFind).BinarySearchAlgorithm();
+//            ComposeBinarySearchTest(arrayOfNumbers, numberToFind);
+//            ComposeBinarySearchSpeedTest(arrayOfNumbers);
+            ComposeLinearSearchTest(arrayOfNumbers, numberToFind);
+            ComposeLinearSearchSpeedTest(arrayOfNumbers);
+        }
 
-            if (binarySearchAlgorithm > 0)
-                Console.WriteLine("Liczba {0} znajduje się na pozycji {1}.", numberToFind, binarySearchAlgorithm);
+        private static void ComposeLinearSearchSpeedTest(int[] arrayOfNumbers)
+        {
+            for(int i = 1; i <= 28; i++)
+            {
+                int arrayLengthToMeassure = (1 << i) - 1;
+
+                LinearSearch linearSearchSpeedTest = new LinearSearch(arrayOfNumbers, i);
+
+                double time = linearSearchSpeedTest.AlgorithmSpeedTest();
+
+                Console.WriteLine("{0}; {1}; {2}", i, arrayLengthToMeassure, time);
+            }
+        }
+
+        private static void ComposeLinearSearchTest(int[] arrayOfNumbers, int numberToFind)
+        {
+            LinearSearch linearSearchAlgorithm = new LinearSearch(arrayOfNumbers, numberToFind);
+            int result = linearSearchAlgorithm.AlgorithmInstrumentation();
+
+            if (result >= 0)
+                Console.WriteLine("Liczba {0} znajduje się na pozycji {1}.", numberToFind, result);
             else
                 Console.WriteLine("Nie znaleziono liczby {0}.", numberToFind);
 
+            Console.WriteLine(linearSearchAlgorithm.GetInstrumentation());
+        }
+
+        private static void ComposeBinarySearchSpeedTest(int[] arrayOfNumbers)
+        {
             for(int i = 10; i <= 28; i++)
             {
                 int arrayLengthToMeassure = (1 << i) - 1;
@@ -30,6 +58,16 @@ namespace Projekt1
 
                 Console.WriteLine("{0}; {1}; {2}", i, arrayLengthToMeassure, time);
             }
+        }
+
+        private static void ComposeBinarySearchTest(int[] arrayOfNumbers, int numberToFind)
+        {
+            int binarySearchAlgorithm = new BinarySearch(arrayOfNumbers, numberToFind).BinarySearchAlgorithm();
+
+            if (binarySearchAlgorithm > 0)
+                Console.WriteLine("Liczba {0} znajduje się na pozycji {1}.", numberToFind, binarySearchAlgorithm);
+            else
+                Console.WriteLine("Nie znaleziono liczby {0}.", numberToFind);
         }
 
         private static int[] GenerateNextNumbers(int arrayLength)

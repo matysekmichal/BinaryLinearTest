@@ -2,7 +2,6 @@
 {
     public interface IAlgorithm
     {
-        int AlgorithmInstrumentation();
         double AlgorithmSpeedTest();
     }
 }
