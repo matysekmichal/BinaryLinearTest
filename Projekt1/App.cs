@@ -20,13 +20,22 @@ namespace Projekt1
 
         private static void ComposeLinearSearchTest(int[] arrayOfNumbers, int numberToFind)
         {
-            LinearSearch linearSearchAlgorithm = new LinearSearch(arrayOfNumbers, numberToFind);
-            int result = linearSearchAlgorithm.AlgorithmInstrumentation();
+            string stream;
+            SaveToFile file = new SaveToFile("LinearSearchTest.csv");
+
+            LinearSearch linearSearchAlgorithm = new LinearSearch(arrayOfNumbers);
 
             for (int i = 1; i <= 5; i++)
             {
-                Console.WriteLine(linearSearchAlgorithm.GetInstrumentation());
+                linearSearchAlgorithm.SetNumberToFind(i);
+                linearSearchAlgorithm.AlgorithmInstrumentation();
+
+                stream = linearSearchAlgorithm.GetInstrumentation();
+                Console.WriteLine(stream);
+                file.SetStream(stream);
             }
+
+            file.Save();
         }
 
         private static void ComposeLinearSearchSpeedTest(int[] arrayOfNumbers)
