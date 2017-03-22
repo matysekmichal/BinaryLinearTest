@@ -12,6 +12,11 @@ namespace Projekt1.AlgorithmsSearch
         public int OpComparisonEq;
         public int OpIncrement;
 
+        public LinearSearch(int[] vector)
+        {
+            this.vector = vector;
+        }
+
         public LinearSearch(int[] vector, int numberToFind)
         {
             this.vector = vector;

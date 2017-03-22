@@ -18,9 +18,23 @@ namespace Projekt1
             ComposeLinearSearchSpeedTest(arrayOfNumbers);
         }
 
+        private static void ComposeLinearSearchTest(int[] arrayOfNumbers, int numberToFind)
+        {
+            LinearSearch linearSearchAlgorithm = new LinearSearch(arrayOfNumbers, numberToFind);
+            int result = linearSearchAlgorithm.AlgorithmInstrumentation();
+
+            for (int i = 1; i <= 5; i++)
+            {
+                Console.WriteLine(linearSearchAlgorithm.GetInstrumentation());
+            }
+        }
+
         private static void ComposeLinearSearchSpeedTest(int[] arrayOfNumbers)
         {
-            for(int i = 1; i <= 28; i++)
+            string stream;
+            SaveToFile file = new SaveToFile("LinearSearchSpeedTest.csv");
+
+            for(int i = 1; i <= 5; i++)
             {
                 int arrayLengthToMeassure = (1 << i) - 1;
 
@@ -28,21 +42,13 @@ namespace Projekt1
 
                 double time = linearSearchSpeedTest.AlgorithmSpeedTest();
 
-                Console.WriteLine("{0}; {1}; {2}", i, arrayLengthToMeassure, time);
+                stream = $"{i}; {arrayLengthToMeassure}; {time}";
+
+                file.SetStream(stream);
+                Console.WriteLine(stream);
             }
-        }
 
-        private static void ComposeLinearSearchTest(int[] arrayOfNumbers, int numberToFind)
-        {
-            LinearSearch linearSearchAlgorithm = new LinearSearch(arrayOfNumbers, numberToFind);
-            int result = linearSearchAlgorithm.AlgorithmInstrumentation();
-
-            if (result >= 0)
-                Console.WriteLine("Liczba {0} znajduje się na pozycji {1}.", numberToFind, result);
-            else
-                Console.WriteLine("Nie znaleziono liczby {0}.", numberToFind);
-
-            Console.WriteLine(linearSearchAlgorithm.GetInstrumentation());
+            file.Save();
         }
 
         private static void ComposeBinarySearchSpeedTest(int[] arrayOfNumbers)

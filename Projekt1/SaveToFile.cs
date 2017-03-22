@@ -1,27 +1,28 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace Projekt1
 {
     public class SaveToFile
     {
         public FileStream Bundle { get; }
-        public string Stream { get; private set; }
+        public string Stream { get; set; }
 
-        SaveToFile(string fileName = "file")
+        public SaveToFile(string fileName = "file.txt")
         {
             Bundle = File.Create(fileName);
         }
 
         public void SetStream(string stream)
         {
-            Stream = stream;
+            Stream += stream + "\n";
         }
 
         public void Save()
         {
             StreamWriter file = new StreamWriter(Bundle);
-            file.WriteLine(Stream);
-            Bundle.Dispose();
+            file.WriteLine(string.Format(Stream));
+            file.Dispose();
         }
     }
 }
