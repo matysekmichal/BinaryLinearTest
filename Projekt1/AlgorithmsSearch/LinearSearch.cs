@@ -23,21 +23,6 @@ namespace Projekt1.AlgorithmsSearch
             _numberToFind = numberToFind;
         }
 
-        public void SetAttempts(int limit)
-        {
-            _attempts = limit;
-        }
-
-        public void SetNumberToFind(int numberToFind)
-        {
-            _numberToFind = numberToFind;
-        }
-
-        public string GetInstrumentation()
-        {
-            return $"{OpAssignment}; {OpComparisonEq}; {OpComparisonLt}; {OpIncrement}";
-        }
-
         public int AlgorithmInstrumentation()
         {
             OpAssignment = OpComparisonLt = 1;
@@ -69,6 +54,21 @@ namespace Projekt1.AlgorithmsSearch
                     return i;
 
             return -1;
+        }
+
+        public void SetAttempts(int limit)
+        {
+            _attempts = limit;
+        }
+
+        public void SetNumberToFind(int numberToFind)
+        {
+            _numberToFind = numberToFind;
+        }
+
+        public string GetInstrumentation()
+        {
+            return $"{OpAssignment}; {OpComparisonEq}; {OpComparisonLt}; {OpIncrement}";
         }
     }
 }

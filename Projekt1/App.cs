@@ -14,11 +14,11 @@ namespace Projekt1
 
 //            ComposeBinarySearchTest(arrayOfNumbers, numberToFind);
 //            ComposeBinarySearchSpeedTest(arrayOfNumbers);
-            ComposeLinearSearchTest(arrayOfNumbers, numberToFind);
+            ComposeLinearSearchTest(arrayOfNumbers);
             ComposeLinearSearchSpeedTest(arrayOfNumbers);
         }
 
-        private static void ComposeLinearSearchTest(int[] arrayOfNumbers, int numberToFind)
+        private static void ComposeLinearSearchTest(int[] arrayOfNumbers)
         {
             string stream;
             SaveToFile file = new SaveToFile("LinearSearchTest.csv");
@@ -62,6 +62,9 @@ namespace Projekt1
 
         private static void ComposeBinarySearchSpeedTest(int[] arrayOfNumbers)
         {
+            string stream;
+            SaveToFile file = new SaveToFile("BinarySearchSpeedTest.csv");
+
             for(int i = 10; i <= 28; i++)
             {
                 int arrayLengthToMeassure = (1 << i) - 1;
@@ -71,12 +74,18 @@ namespace Projekt1
 
                 double time = binarySearchSpeedTest.AlgorithmSpeedTest();
 
-                Console.WriteLine("{0}; {1}; {2}", i, arrayLengthToMeassure, time);
+                stream = $"{i}; {arrayLengthToMeassure}; {time}";
+
+                file.SetStream(stream);
+                Console.WriteLine(stream);
             }
         }
 
         private static void ComposeBinarySearchTest(int[] arrayOfNumbers, int numberToFind)
         {
+            string stream;
+            SaveToFile file = new SaveToFile("BinarySearchTest.csv");
+
             int binarySearchAlgorithm = new BinarySearch(arrayOfNumbers, numberToFind).BinarySearchAlgorithm();
 
             if (binarySearchAlgorithm > 0)

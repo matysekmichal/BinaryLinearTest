@@ -26,26 +26,6 @@ namespace Projekt1.AlgorithmsSearch
             _arrayLengthToMeassure = vector.Length;
         }
 
-        public void SetAttempts(int limit)
-        {
-            _attempts = limit;
-        }
-
-        public void SetLimitArrayToCheck(int limit)
-        {
-            _arrayLengthToMeassure = limit < _vector.Length ? limit : _vector.Length;
-        }
-
-        public void SetNumberToFind(int numberToFind)
-        {
-            _numberToFind = numberToFind;
-        }
-
-        public string GetInstrumentation()
-        {
-            return $"{OpAssignment}; {OpComparisonEq}; {OpComparisonLt}; {OpIncrement}";
-        }
-
         public int AlgorithmInstrumentation()
         {
             int left = 0;
@@ -102,6 +82,26 @@ namespace Projekt1.AlgorithmsSearch
             }
 
             return -1;
+        }
+
+        public void SetAttempts(int limit)
+        {
+            _attempts = limit;
+        }
+
+        public void SetLimitArrayToCheck(int limit)
+        {
+            _arrayLengthToMeassure = limit < _vector.Length ? limit : _vector.Length;
+        }
+
+        public void SetNumberToFind(int numberToFind)
+        {
+            _numberToFind = numberToFind;
+        }
+
+        public string GetInstrumentation()
+        {
+            return $"{OpAssignment}; {OpComparisonEq}; {OpComparisonLt}; {OpIncrement}";
         }
     }
 }
