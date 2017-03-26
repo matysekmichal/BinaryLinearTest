@@ -10,10 +10,9 @@ namespace Projekt1
         public static void Main(string[] args)
         {
             int[] arrayOfNumbers = GenerateNextNumbers(ArrayLength);
-            int numberToFind = 2;
 
-//            ComposeBinarySearchTest(arrayOfNumbers, numberToFind);
-//            ComposeBinarySearchSpeedTest(arrayOfNumbers);
+            ComposeBinarySearchTest(arrayOfNumbers);
+            ComposeBinarySearchSpeedTest(arrayOfNumbers);
             ComposeLinearSearchTest(arrayOfNumbers);
             ComposeLinearSearchSpeedTest(arrayOfNumbers);
         }
@@ -25,7 +24,7 @@ namespace Projekt1
 
             LinearSearch linearSearchAlgorithm = new LinearSearch(arrayOfNumbers);
 
-            for (int i = 1; i <= 5; i++)
+            for (int i = 1; i <= 28; i++)
             {
                 linearSearchAlgorithm.SetNumberToFind(i);
                 linearSearchAlgorithm.AlgorithmInstrumentation();
@@ -79,19 +78,28 @@ namespace Projekt1
                 file.SetStream(stream);
                 Console.WriteLine(stream);
             }
+
+            file.Save();
         }
 
-        private static void ComposeBinarySearchTest(int[] arrayOfNumbers, int numberToFind)
+        private static void ComposeBinarySearchTest(int[] arrayOfNumbers)
         {
             string stream;
             SaveToFile file = new SaveToFile("BinarySearchTest.csv");
 
-            int binarySearchAlgorithm = new BinarySearch(arrayOfNumbers, numberToFind).BinarySearchAlgorithm();
+            BinarySearch binarySearchAlgorithm = new BinarySearch(arrayOfNumbers);
 
-            if (binarySearchAlgorithm > 0)
-                Console.WriteLine("Liczba {0} znajduje się na pozycji {1}.", numberToFind, binarySearchAlgorithm);
-            else
-                Console.WriteLine("Nie znaleziono liczby {0}.", numberToFind);
+            for (int i = 1; i <= 28; i++)
+            {
+                binarySearchAlgorithm.SetNumberToFind(i);
+                binarySearchAlgorithm.AlgorithmInstrumentation();
+
+                stream = binarySearchAlgorithm.GetInstrumentation();
+                Console.WriteLine(stream);
+                file.SetStream(stream);
+            }
+
+            file.Save();
         }
 
         private static int[] GenerateNextNumbers(int arrayLength)
