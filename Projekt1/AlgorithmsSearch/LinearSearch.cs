@@ -4,7 +4,7 @@ namespace Projekt1.AlgorithmsSearch
 {
     public class LinearSearch : IAlgorithm
     {
-        private int[] vector;
+        private readonly int[] _vector;
         private int _numberToFind;
         private int _attempts = 100000000;
         public int OpAssignment;
@@ -14,12 +14,12 @@ namespace Projekt1.AlgorithmsSearch
 
         public LinearSearch(int[] vector)
         {
-            this.vector = vector;
+            _vector = vector;
         }
 
         public LinearSearch(int[] vector, int numberToFind)
         {
-            this.vector = vector;
+            _vector = vector;
             _numberToFind = numberToFind;
         }
 
@@ -33,21 +33,21 @@ namespace Projekt1.AlgorithmsSearch
             _numberToFind = numberToFind;
         }
 
-        public int AlgorithmInstrumentation()
-        {
-            OpAssignment = OpComparisonLt = 1;
-            for (int i = 0; i < vector.Length; i++, OpIncrement++)
-            {
-                OpComparisonEq++;
-                if (vector[i] == _numberToFind) return i;
-                OpComparisonLt++;
-            }
-            return -1;
-        }
-
         public string GetInstrumentation()
         {
             return $"{OpAssignment}; {OpComparisonEq}; {OpComparisonLt}; {OpIncrement}";
+        }
+
+        public int AlgorithmInstrumentation()
+        {
+            OpAssignment = OpComparisonLt = 1;
+            for (int i = 0; i < _vector.Length; i++, OpIncrement++)
+            {
+                OpComparisonEq++;
+                if (_vector[i] == _numberToFind) return i;
+                OpComparisonLt++;
+            }
+            return -1;
         }
 
         public double AlgorithmSpeedTest()
@@ -64,7 +64,7 @@ namespace Projekt1.AlgorithmsSearch
 
         public int LinearSearchAlgorithm()
         {
-            foreach (int i in vector)
+            foreach (int i in _vector)
                 if (i == _numberToFind)
                     return i;
 

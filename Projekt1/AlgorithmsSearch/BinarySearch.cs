@@ -4,26 +4,77 @@ namespace Projekt1.AlgorithmsSearch
 {
     public class BinarySearch : IAlgorithm
     {
-        private int[] vector;
-        private int numberToFind;
+        private readonly int[] _vector;
+        private int _numberToFind;
         private int _arrayLengthToMeassure;
         private int _attempts = 100000000;
+        public int OpAssignment;
+        public int OpComparisonLt;
+        public int OpComparisonEq;
+        public int OpIncrement;
 
-        public BinarySearch(int[] vector, int numberToFind)
+        public BinarySearch(int[] vector)
         {
-            this.vector = vector;
-            this.numberToFind = numberToFind;
+            _vector = vector;
             _arrayLengthToMeassure = vector.Length;
         }
 
-        public void SetLimitArrayToCheck(int limit)
+        public BinarySearch(int[] vector, int numberToFind)
         {
-            _arrayLengthToMeassure = limit < vector.Length ? limit : vector.Length;
+            _vector = vector;
+            _numberToFind = numberToFind;
+            _arrayLengthToMeassure = vector.Length;
         }
 
         public void SetAttempts(int limit)
         {
             _attempts = limit;
+        }
+
+        public void SetLimitArrayToCheck(int limit)
+        {
+            _arrayLengthToMeassure = limit < _vector.Length ? limit : _vector.Length;
+        }
+
+        public void SetNumberToFind(int numberToFind)
+        {
+            _numberToFind = numberToFind;
+        }
+
+        public string GetInstrumentation()
+        {
+            return $"{OpAssignment}; {OpComparisonEq}; {OpComparisonLt}; {OpIncrement}";
+        }
+
+        public int AlgorithmInstrumentation()
+        {
+            int left = 0;
+            int right = _arrayLengthToMeassure - 1;
+            OpAssignment = OpComparisonLt = 1;
+
+            while(left <= right)
+            {
+                int middle = (left + right) >> 1;
+
+                if (_vector[middle] == _numberToFind)
+                {
+                    OpComparisonEq++;
+                    return middle;
+                }
+                if (_vector[middle] > _numberToFind)
+                {
+                    OpComparisonEq++;
+                    right = middle - 1;
+                }
+                else
+                {
+                    OpComparisonEq++;
+                    left = middle + 1;
+                }
+                OpComparisonLt++;
+            }
+
+            return -1;
         }
 
         public double AlgorithmSpeedTest()
@@ -38,26 +89,6 @@ namespace Projekt1.AlgorithmsSearch
             return (stopTime - startTime) / (double)Stopwatch.Frequency;
         }
 
-        public int AlgorithmInstrumentation()
-        {
-            int left = 0;
-            int right = _arrayLengthToMeassure - 1;
-
-            while(left <= right)
-            {
-                int middle = (left + right) >> 1;
-
-                if (vector[middle] == numberToFind)
-                    return middle;
-                if (vector[middle] > numberToFind)
-                    right = middle - 1;
-                else
-                    left = middle + 1;
-            }
-
-            return -1;
-        }
-
         public int BinarySearchAlgorithm()
         {
             int left = 0;
@@ -67,9 +98,9 @@ namespace Projekt1.AlgorithmsSearch
             {
                 int middle = (left + right) >> 1;
 
-                if (vector[middle] == numberToFind)
+                if (_vector[middle] == _numberToFind)
                     return middle;
-                if (vector[middle] > numberToFind)
+                if (_vector[middle] > _numberToFind)
                     right = middle - 1;
                 else
                     left = middle + 1;
