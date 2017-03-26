@@ -56,21 +56,16 @@ namespace Projekt1.AlgorithmsSearch
             {
                 int middle = (left + right) >> 1;
 
+                OpComparisonEq++;
                 if (_vector[middle] == _numberToFind)
-                {
-                    OpComparisonEq++;
                     return middle;
-                }
+
+                OpComparisonEq++;
                 if (_vector[middle] > _numberToFind)
-                {
-                    OpComparisonEq++;
                     right = middle - 1;
-                }
                 else
-                {
-                    OpComparisonEq++;
                     left = middle + 1;
-                }
+
                 OpComparisonLt++;
             }
 
