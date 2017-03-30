@@ -11,9 +11,13 @@ namespace Projekt1
         {
             int[] arrayOfNumbers = GenerateNextNumbers(ArrayLength);
 
+            Console.WriteLine("1. Binary test:");
             ComposeBinarySearchTest(arrayOfNumbers);
+            Console.WriteLine("2. Binary speed test:");
             ComposeBinarySearchSpeedTest(arrayOfNumbers);
+            Console.WriteLine("3. Linear test:");
             ComposeLinearSearchTest(arrayOfNumbers);
+            Console.WriteLine("4. Linear speed test.");
             ComposeLinearSearchSpeedTest(arrayOfNumbers);
         }
 
@@ -64,11 +68,11 @@ namespace Projekt1
             string stream;
             SaveToFile file = new SaveToFile("BinarySearchSpeedTest.csv");
 
-            for(int i = 10; i <= 28; i++)
+            for(int i = 10; i <= 15; i++)
             {
                 int arrayLengthToMeassure = (1 << i) - 1;
 
-                BinarySearch binarySearchSpeedTest = new BinarySearch(arrayOfNumbers, 0);
+                BinarySearch binarySearchSpeedTest = new BinarySearch(arrayOfNumbers, i);
                 binarySearchSpeedTest.SetLimitArrayToCheck(arrayLengthToMeassure);
 
                 double time = binarySearchSpeedTest.AlgorithmSpeedTest();

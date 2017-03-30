@@ -21,7 +21,7 @@ namespace Projekt1
         public void Save()
         {
             StreamWriter file = new StreamWriter(Bundle);
-            file.WriteLine(string.Format(Stream));
+            file.WriteLine(Stream);
             file.Dispose();
         }
     }

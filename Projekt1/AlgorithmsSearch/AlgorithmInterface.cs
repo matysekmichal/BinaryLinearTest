@@ -2,7 +2,9 @@
 {
     public interface IAlgorithm
     {
-        string GetInstrumentation();
+        int AlgorithmInstrumentation();
         double AlgorithmSpeedTest();
+        string GetInstrumentation();
+        void SetNumberToFind(int numberToFind);
     }
 }
