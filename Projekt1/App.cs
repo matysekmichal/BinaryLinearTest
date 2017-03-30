@@ -23,7 +23,6 @@ namespace Projekt1
 
         private static void ComposeLinearSearchTest(int[] arrayOfNumbers)
         {
-            string stream;
             SaveToFile file = new SaveToFile("LinearSearchTest.csv");
 
             LinearSearch linearSearchAlgorithm = new LinearSearch(arrayOfNumbers);
@@ -33,7 +32,7 @@ namespace Projekt1
                 linearSearchAlgorithm.SetNumberToFind(i);
                 linearSearchAlgorithm.AlgorithmInstrumentation();
 
-                stream = linearSearchAlgorithm.GetInstrumentation();
+                var stream = linearSearchAlgorithm.GetInstrumentation();
                 Console.WriteLine(stream);
                 file.SetStream(stream);
             }
@@ -43,18 +42,19 @@ namespace Projekt1
 
         private static void ComposeLinearSearchSpeedTest(int[] arrayOfNumbers)
         {
-            string stream;
             SaveToFile file = new SaveToFile("LinearSearchSpeedTest.csv");
 
-            for(int i = 1; i <= 5; i++)
+            LinearSearch linearSearchSpeedTest = new LinearSearch(arrayOfNumbers);
+
+            for(int i = 1; i <= 12; i++)
             {
                 int arrayLengthToMeassure = (1 << i) - 1;
 
-                LinearSearch linearSearchSpeedTest = new LinearSearch(arrayOfNumbers, i);
+                linearSearchSpeedTest.SetNumberToFind(arrayLengthToMeassure);
 
                 double time = linearSearchSpeedTest.AlgorithmSpeedTest();
 
-                stream = $"{i}; {arrayLengthToMeassure}; {time}";
+                string stream = $"{i}; {arrayLengthToMeassure}; {time}";
 
                 file.SetStream(stream);
                 Console.WriteLine(stream);
@@ -65,19 +65,20 @@ namespace Projekt1
 
         private static void ComposeBinarySearchSpeedTest(int[] arrayOfNumbers)
         {
-            string stream;
             SaveToFile file = new SaveToFile("BinarySearchSpeedTest.csv");
 
-            for(int i = 10; i <= 15; i++)
+            BinarySearch binarySearchSpeedTest = new BinarySearch(arrayOfNumbers);
+
+            for(int i = 1; i <= 28; i++)
             {
                 int arrayLengthToMeassure = (1 << i) - 1;
 
-                BinarySearch binarySearchSpeedTest = new BinarySearch(arrayOfNumbers, i);
+                binarySearchSpeedTest.SetNumberToFind(i);
                 binarySearchSpeedTest.SetLimitArrayToCheck(arrayLengthToMeassure);
 
                 double time = binarySearchSpeedTest.AlgorithmSpeedTest();
 
-                stream = $"{i}; {arrayLengthToMeassure}; {time}";
+                string stream = $"{i}; {arrayLengthToMeassure}; {time}";
 
                 file.SetStream(stream);
                 Console.WriteLine(stream);
@@ -88,7 +89,6 @@ namespace Projekt1
 
         private static void ComposeBinarySearchTest(int[] arrayOfNumbers)
         {
-            string stream;
             SaveToFile file = new SaveToFile("BinarySearchTest.csv");
 
             BinarySearch binarySearchAlgorithm = new BinarySearch(arrayOfNumbers);
@@ -98,7 +98,7 @@ namespace Projekt1
                 binarySearchAlgorithm.SetNumberToFind(i);
                 binarySearchAlgorithm.AlgorithmInstrumentation();
 
-                stream = binarySearchAlgorithm.GetInstrumentation();
+                var stream = binarySearchAlgorithm.GetInstrumentation();
                 Console.WriteLine(stream);
                 file.SetStream(stream);
             }

@@ -12,6 +12,8 @@ namespace Projekt1.AlgorithmsSearch
         public int OpComparisonLt;
         public int OpComparisonEq;
         public int OpIncrement;
+        public int OpDecrement;
+        public int OpComparisonSte;
 
         public BinarySearch(int[] vector)
         {
@@ -31,7 +33,9 @@ namespace Projekt1.AlgorithmsSearch
             int left = 0;
             int right = _arrayLengthToMeassure - 1;
             OpAssignment = OpComparisonLt = 1;
+            OpIncrement = OpDecrement = OpComparisonEq = OpComparisonSte =0;
 
+            OpComparisonSte++;
             while(left <= right)
             {
                 int middle = (left + right) >> 1;
@@ -40,13 +44,17 @@ namespace Projekt1.AlgorithmsSearch
                 if (_vector[middle] == _numberToFind)
                     return middle;
 
-                OpComparisonEq++;
-                if (_vector[middle] > _numberToFind)
-                    right = middle - 1;
-                else
-                    left = middle + 1;
-
                 OpComparisonLt++;
+                if (_vector[middle] > _numberToFind)
+                {
+                    OpDecrement++;
+                    right = middle - 1;
+                }
+                else
+                {
+                    OpIncrement++;
+                    left = middle + 1;
+                }
             }
 
             return -1;
@@ -101,7 +109,7 @@ namespace Projekt1.AlgorithmsSearch
 
         public string GetInstrumentation()
         {
-            return $"{OpAssignment}; {OpComparisonEq}; {OpComparisonLt}; {OpIncrement}";
+            return $"{OpAssignment}; {OpComparisonEq}; {OpComparisonLt}; {OpComparisonSte}; {OpIncrement}; {OpDecrement}";
         }
     }
 }

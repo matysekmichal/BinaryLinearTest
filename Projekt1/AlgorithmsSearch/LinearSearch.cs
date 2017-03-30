@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 
 namespace Projekt1.AlgorithmsSearch
 {
@@ -26,12 +27,14 @@ namespace Projekt1.AlgorithmsSearch
         public int AlgorithmInstrumentation()
         {
             OpAssignment = OpComparisonLt = 1;
+            OpIncrement = OpComparisonEq = 0;
             for (int i = 0; i < _vector.Length; i++, OpIncrement++)
             {
                 OpComparisonEq++;
                 if (_vector[i] == _numberToFind) return i;
                 OpComparisonLt++;
             }
+
             return -1;
         }
 
