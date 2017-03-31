@@ -38,6 +38,7 @@ namespace Projekt1.AlgorithmsSearch
             OpComparisonSte++;
             while(left <= right)
             {
+                OpAssignment++;
                 int middle = (left + right) >> 1;
 
                 OpComparisonEq++;
@@ -48,11 +49,13 @@ namespace Projekt1.AlgorithmsSearch
                 if (_vector[middle] > _numberToFind)
                 {
                     OpDecrement++;
+                    OpAssignment++;
                     right = middle - 1;
                 }
                 else
                 {
                     OpIncrement++;
+                    OpAssignment++;
                     left = middle + 1;
                 }
             }

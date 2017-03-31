@@ -11,14 +11,14 @@ namespace Projekt1
         {
             int[] arrayOfNumbers = GenerateNextNumbers(ArrayLength);
 
-            Console.WriteLine("1. Binary test:");
-            ComposeBinarySearchTest(arrayOfNumbers);
+//            Console.WriteLine("1. Binary test:");
+//            ComposeBinarySearchTest(arrayOfNumbers);
             Console.WriteLine("2. Binary speed test:");
             ComposeBinarySearchSpeedTest(arrayOfNumbers);
-            Console.WriteLine("3. Linear test:");
-            ComposeLinearSearchTest(arrayOfNumbers);
-            Console.WriteLine("4. Linear speed test.");
-            ComposeLinearSearchSpeedTest(arrayOfNumbers);
+//            Console.WriteLine("3. Linear test:");
+//            ComposeLinearSearchTest(arrayOfNumbers);
+//            Console.WriteLine("4. Linear speed test.");
+//            ComposeLinearSearchSpeedTest(arrayOfNumbers);
         }
 
         private static void ComposeLinearSearchTest(int[] arrayOfNumbers)
@@ -46,15 +46,13 @@ namespace Projekt1
 
             LinearSearch linearSearchSpeedTest = new LinearSearch(arrayOfNumbers);
 
-            for(int i = 1; i <= 12; i++)
+            for(int i = 1; i <= 28; i++)
             {
-                int arrayLengthToMeassure = (1 << i) - 1;
-
-                linearSearchSpeedTest.SetNumberToFind(arrayLengthToMeassure);
+                linearSearchSpeedTest.SetNumberToFind(i);
 
                 double time = linearSearchSpeedTest.AlgorithmSpeedTest();
 
-                string stream = $"{i}; {arrayLengthToMeassure}; {time}";
+                string stream = $"{i}; {time}";
 
                 file.SetStream(stream);
                 Console.WriteLine(stream);
@@ -71,14 +69,11 @@ namespace Projekt1
 
             for(int i = 1; i <= 28; i++)
             {
-                int arrayLengthToMeassure = (1 << i) - 1;
-
                 binarySearchSpeedTest.SetNumberToFind(i);
-                binarySearchSpeedTest.SetLimitArrayToCheck(arrayLengthToMeassure);
 
                 double time = binarySearchSpeedTest.AlgorithmSpeedTest();
 
-                string stream = $"{i}; {arrayLengthToMeassure}; {time}";
+                string stream = $"{i}; {time}";
 
                 file.SetStream(stream);
                 Console.WriteLine(stream);
