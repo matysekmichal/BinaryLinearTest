@@ -11,14 +11,14 @@ namespace Projekt1
         {
             int[] arrayOfNumbers = GenerateNextNumbers(ArrayLength);
 
-//            Console.WriteLine("1. Binary test:");
-//            ComposeBinarySearchTest(arrayOfNumbers);
+            Console.WriteLine("1. Binary test:");
+            ComposeBinarySearchTest(arrayOfNumbers);
             Console.WriteLine("2. Binary speed test:");
             ComposeBinarySearchSpeedTest(arrayOfNumbers);
-//            Console.WriteLine("3. Linear test:");
-//            ComposeLinearSearchTest(arrayOfNumbers);
-//            Console.WriteLine("4. Linear speed test.");
-//            ComposeLinearSearchSpeedTest(arrayOfNumbers);
+            Console.WriteLine("3. Linear test:");
+            ComposeLinearSearchTest(arrayOfNumbers);
+            Console.WriteLine("4. Linear speed test.");
+            ComposeLinearSearchSpeedTest(arrayOfNumbers);
         }
 
         private static void ComposeLinearSearchTest(int[] arrayOfNumbers)
@@ -52,7 +52,7 @@ namespace Projekt1
 
                 double time = linearSearchSpeedTest.AlgorithmSpeedTest();
 
-                string stream = $"{i}; {time}";
+                string stream = $"{time}";
 
                 file.SetStream(stream);
                 Console.WriteLine(stream);
@@ -69,7 +69,7 @@ namespace Projekt1
 
             for(int i = 1; i <= 28; i++)
             {
-                binarySearchSpeedTest.SetNumberToFind(i);
+                binarySearchSpeedTest.SetNumberToFind(ArrayLength/2);
 
                 double time = binarySearchSpeedTest.AlgorithmSpeedTest();
 
